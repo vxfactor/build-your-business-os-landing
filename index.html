@@ -550,34 +550,53 @@
     /* ============================================================
        SIGNUP
     ============================================================ */
+    .signup-section {
+      background: linear-gradient(180deg, var(--cream) 0%, var(--stone) 100%);
+      padding-block: clamp(4rem, 8vw, 7rem);
+    }
+
     .signup-wrap {
-      max-width: 560px;
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
     }
 
-    .signup-heading {
-      font-family: var(--font-display);
-      font-size: clamp(1.375rem, 2.5vw + 0.5rem, 1.875rem);
-      font-weight: 700;
-      line-height: 1.2;
-      letter-spacing: -0.015em;
-      margin-bottom: 0.625rem;
-      color: var(--espresso);
-    }
-
-    .signup-sub {
-      font-size: 1rem;
-      line-height: 1.6;
-      color: var(--muted);
+    .signup-eyebrow {
+      display: inline-block;
       margin-bottom: 2rem;
-      max-width: 50ch;
-    }
-
-    .signup-footnote {
-      margin-top: 0.875rem;
+      padding: 0.4rem 0.875rem;
+      background: rgba(242, 75, 46, 0.12);
+      color: var(--coral);
       font-family: var(--font-mono);
       font-size: 0.72rem;
-      letter-spacing: 0.06em;
-      color: var(--muted);
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .signup-card {
+      position: relative;
+      background: var(--paper);
+      border: 1px solid var(--stone);
+      padding: clamp(1.75rem, 4vw, 3rem) clamp(1.5rem, 4vw, 3rem);
+      box-shadow: 0 24px 60px -28px rgba(73, 59, 53, 0.22),
+                  0 4px 12px -4px rgba(73, 59, 53, 0.08);
+      text-align: left;
+    }
+
+    .signup-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--coral);
+    }
+
+    /* Tighten Flodesk's internal padding inside our card */
+    .signup-card #fd-form-6a08c3a0913d1816ff635afc {
+      margin: 0;
     }
 
     /* ============================================================
@@ -1122,41 +1141,35 @@
     <!-- ============================================================
          SIGNUP
     ============================================================ -->
-    <section class="section section--cream" id="signup" aria-labelledby="signup-heading">
+    <section class="signup-section" id="signup" aria-label="Signup">
       <div class="container">
         <div class="signup-wrap reveal">
-          <span class="eyebrow eyebrow--coral">GET THE COURSE</span>
-          <h2 id="signup-heading" class="signup-heading">
-            Free. No credit card. The course link arrives in your inbox in under a minute.
-          </h2>
-          <p class="signup-sub">
-            Drop your email below. You'll get a short welcome and a direct link to all twelve sections.
-          </p>
+          <span class="signup-eyebrow">Get the course</span>
 
-          <div id="fd-form-6a08c3a0913d1816ff635afc"></div>
-          <script>
-            (function (w, d, t, h, s, n) {
-              w.FlodeskObject = n;
-              var fn = function () { (w[n].q = w[n].q || []).push(arguments); };
-              w[n] = w[n] || fn;
-              var f = d.getElementsByTagName(t)[0];
-              var v = '?v=' + Math.floor(new Date().getTime() / (120 * 1000)) * 60;
-              var sm = d.createElement(t);
-              sm.async = true; sm.type = 'module';
-              sm.src = h + s + '.mjs' + v;
-              f.parentNode.insertBefore(sm, f);
-              var sn = d.createElement(t);
-              sn.async = true; sn.noModule = true;
-              sn.src = h + s + '.js' + v;
-              f.parentNode.insertBefore(sn, f);
-            })(window, document, 'script', 'https://assets.flodesk.com', '/universal', 'fd');
-            window.fd('form', {
-              formId: '6a08c3a0913d1816ff635afc',
-              containerEl: '#fd-form-6a08c3a0913d1816ff635afc'
-            });
-          </script>
-
-          <p class="signup-footnote">No card. Email only.</p>
+          <div class="signup-card">
+            <div id="fd-form-6a08c3a0913d1816ff635afc"></div>
+            <script>
+              (function (w, d, t, h, s, n) {
+                w.FlodeskObject = n;
+                var fn = function () { (w[n].q = w[n].q || []).push(arguments); };
+                w[n] = w[n] || fn;
+                var f = d.getElementsByTagName(t)[0];
+                var v = '?v=' + Math.floor(new Date().getTime() / (120 * 1000)) * 60;
+                var sm = d.createElement(t);
+                sm.async = true; sm.type = 'module';
+                sm.src = h + s + '.mjs' + v;
+                f.parentNode.insertBefore(sm, f);
+                var sn = d.createElement(t);
+                sn.async = true; sn.noModule = true;
+                sn.src = h + s + '.js' + v;
+                f.parentNode.insertBefore(sn, f);
+              })(window, document, 'script', 'https://assets.flodesk.com', '/universal', 'fd');
+              window.fd('form', {
+                formId: '6a08c3a0913d1816ff635afc',
+                containerEl: '#fd-form-6a08c3a0913d1816ff635afc'
+              });
+            </script>
+          </div>
         </div>
       </div>
     </section>
