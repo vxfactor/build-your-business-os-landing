@@ -1133,11 +1133,28 @@
             Drop your email below. You'll get a short welcome and a direct link to all twelve sections.
           </p>
 
-          <div class="flodesk-embed-placeholder" style="border:1px dashed #A58372; padding:2rem; background:#FEFFFF; text-align:center; color:#A58372; font-family:'JetBrains Mono', monospace; font-size:0.85rem;">
-            <!-- FLODESK FORM EMBED -->
-            <!-- Replace this block with the Flodesk inline form embed for the "Build Your Business OS" signup form. -->
-            FLODESK FORM EMBED PLACEHOLDER
-          </div>
+          <div id="fd-form-6a08c3a0913d1816ff635afc"></div>
+          <script>
+            (function (w, d, t, h, s, n) {
+              w.FlodeskObject = n;
+              var fn = function () { (w[n].q = w[n].q || []).push(arguments); };
+              w[n] = w[n] || fn;
+              var f = d.getElementsByTagName(t)[0];
+              var v = '?v=' + Math.floor(new Date().getTime() / (120 * 1000)) * 60;
+              var sm = d.createElement(t);
+              sm.async = true; sm.type = 'module';
+              sm.src = h + s + '.mjs' + v;
+              f.parentNode.insertBefore(sm, f);
+              var sn = d.createElement(t);
+              sn.async = true; sn.noModule = true;
+              sn.src = h + s + '.js' + v;
+              f.parentNode.insertBefore(sn, f);
+            })(window, document, 'script', 'https://assets.flodesk.com', '/universal', 'fd');
+            window.fd('form', {
+              formId: '6a08c3a0913d1816ff635afc',
+              containerEl: '#fd-form-6a08c3a0913d1816ff635afc'
+            });
+          </script>
 
           <p class="signup-footnote">No card. Email only.</p>
         </div>
