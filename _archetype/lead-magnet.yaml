@@ -1,0 +1,39 @@
+# Single-page lead magnet with email gate.
+# Ideal for: downloadable guides, free audits, waitlists, email capture for new offers.
+# Mirrors the mini-course shape: hero → value preview → email form → confirmation.
+
+id: lead-magnet
+label: Lead magnet / waitlist
+description: One page, one goal — capture an email. Flodesk-embed friendly.
+pages:
+  - slug: index
+    path: index.html
+    sections:
+      - id: hero
+        purpose: >
+          What the user gets + who it's for + the email form. Form is above the
+          fold. The headline describes the outcome, not the deliverable.
+        copy_required: [headline, subheadline, cta_button]
+        image: hero
+      - id: what-you-get
+        purpose: 3-5 bullet points describing exactly what's inside.
+        copy_required: [bullets]
+      - id: who-its-for
+        purpose: 2-3 "this is for you if..." statements to qualify the audience.
+        copy_required: [audience_bullets]
+      - id: about-author
+        purpose: Short credibility paragraph — why trust this source.
+        copy_required: [author_bio]
+        image: author-portrait
+      - id: social-proof
+        purpose: Testimonials or numeric proof that this works.
+        copy_required: [proof_items]
+      - id: secondary-cta
+        purpose: Repeated email form at bottom with a reframed headline.
+        copy_required: [secondary_cta_headline]
+      - id: footer
+        purpose: Minimal — copyright + privacy link.
+
+integrations:
+  email_provider: flodesk      # native embed, no backend needed
+  fallback: netlify-forms       # if flodesk not configured

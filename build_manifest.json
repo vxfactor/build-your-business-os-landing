@@ -1,0 +1,17 @@
+{
+  "slug": "build-your-business-os-landing",
+  "name": "Build Your Business OS",
+  "archetype": "lead-magnet",
+  "design_system": "_scraped",
+  "design_md": "_design/DESIGN.md",
+  "built_at": "2026-05-16T11:19:39.430349+00:00",
+  "pages": [
+    {
+      "slug": "index",
+      "path": "index.html",
+      "prompt": "_prompts/index.md",
+      "html": "index.html",
+      "status": "pending"
+    }
+  ]
+}

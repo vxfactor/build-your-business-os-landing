@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build Your Business OS | Silver AI Consulting</title>
+  <meta name="description" content="Twelve paste-the-prompt steps that set up an AI-native workspace. Free course, delivered by email. Works under Claude Code, Codex CLI, and Cowork.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ============================================================
+       RESET + BASE
+    ============================================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --cream:          #F5F1EE;
+      --paper:          #FEFFFF;
+      --stone:          #E8E2DE;
+      --espresso:       #493B35;
+      --coral:          #F24B2E;
+      --coral-hover:    #D93E23;
+      --coral-subtle:   rgba(242,75,46,0.08);
+      --muted:          #A58372;
+      --gold:           #C17817;
+
+      --font-display:   'Playfair Display', Georgia, serif;
+      --font-body:      'Inter', system-ui, sans-serif;
+      --font-mono:      'JetBrains Mono', 'Courier New', monospace;
+
+      --section-pad:    6rem;
+      --container:      1200px;
+      --h-pad:          2rem;
+    }
+
+    html {
+      font-size: 16px;
+      font-optical-sizing: auto;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--paper);
+      color: var(--espresso);
+      font-family: var(--font-body);
+      font-size: 1.125rem;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--coral);
+      text-decoration: underline;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--coral);
+      outline-offset: 3px;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* ============================================================
+       CONTAINER
+    ============================================================ */
+    .container {
+      max-width: var(--container);
+      margin-inline: auto;
+      padding-inline: var(--h-pad);
+    }
+
+    /* ============================================================
+       TYPOGRAPHY HELPERS
+    ============================================================ */
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .eyebrow--coral {
+      color: var(--coral);
+    }
+
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      color: var(--espresso);
+      text-wrap: balance;
+    }
+
+    h1 {
+      font-size: clamp(2.25rem, 4vw + 0.75rem, 3.5rem);
+      font-weight: 700;
+      line-height: 1.07;
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: clamp(1.75rem, 3vw + 0.5rem, 2.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    h3 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+    }
+
+    p {
+      max-width: 65ch;
+      color: var(--espresso);
+    }
+
+    /* ============================================================
+       BUTTONS
+    ============================================================ */
+    .btn-primary {
+      display: inline-block;
+      background: var(--coral);
+      color: var(--paper);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 0.875rem 2rem;
+      border-radius: 4px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 200ms ease, transform 200ms ease;
+      line-height: 1.3;
+    }
+
+    .btn-primary:hover {
+      background: var(--coral-hover);
+      transform: translateY(-2px);
+      color: var(--paper);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .btn-outline {
+      display: inline-block;
+      background: transparent;
+      color: var(--coral);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 0.875rem 2rem;
+      border-radius: 4px;
+      border: 1px solid var(--coral);
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 200ms ease, transform 200ms ease;
+      line-height: 1.3;
+    }
+
+    .btn-outline:hover {
+      background: var(--coral-subtle);
+      transform: translateY(-2px);
+    }
+
+    /* ============================================================
+       SCROLL REVEAL
+    ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 380ms ease, transform 380ms ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================================
+       HEADER
+    ============================================================ */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--paper);
+      border-bottom: 1px solid transparent;
+      transition: border-color 200ms ease;
+    }
+
+    .site-header.is-scrolled {
+      border-color: var(--stone);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-block: 1.25rem;
+    }
+
+    .wordmark {
+      font-family: var(--font-display);
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--espresso);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+
+    .header-lockup {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .header-lockup .built-for {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .header-lockup img {
+      height: 22px !important;
+      width: auto;
+    }
+
+    .header-lockup .logo-label {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      color: var(--espresso);
+      font-weight: 500;
+    }
+
+    .header-lockup .sep {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1;
+      opacity: 0.6;
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .hero {
+      background: var(--paper);
+      padding-block: 5rem 3.5rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .hero-sub {
+      font-size: 1.0625rem;
+      line-height: 1.6;
+      color: var(--espresso);
+      max-width: 50ch;
+    }
+
+    .hero-image-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-image-frame {
+      border: 1px solid var(--stone);
+      overflow: hidden;
+    }
+
+    .hero-image-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .hero-image-caption {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.695rem;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-top: 0.625rem;
+      text-align: right;
+    }
+
+    /* ============================================================
+       PROOF STRIP
+    ============================================================ */
+    .proof-strip {
+      background: var(--cream);
+      border-top: 1px solid var(--stone);
+      border-bottom: 1px solid var(--stone);
+      padding-block: 1.75rem;
+    }
+
+    .proof-strip-inner {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .proof-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.3rem;
+      padding-inline: 1rem;
+      border-right: 1px solid var(--stone);
+    }
+
+    .proof-item:last-child {
+      border-right: none;
+    }
+
+    .proof-num {
+      font-family: var(--font-mono);
+      font-size: 1.875rem;
+      font-weight: 500;
+      color: var(--espresso);
+      line-height: 1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .proof-label {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    /* ============================================================
+       SECTIONS
+    ============================================================ */
+    .section {
+      padding-block: var(--section-pad);
+    }
+
+    .section--cream {
+      background: var(--cream);
+    }
+
+    .section--paper {
+      background: var(--paper);
+    }
+
+    .section--dark {
+      background: var(--espresso);
+    }
+
+    .section-head {
+      margin-bottom: 3rem;
+    }
+
+    .section-head h2 {
+      margin-top: 0.25rem;
+    }
+
+    /* ============================================================
+       BENEFITS
+    ============================================================ */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem 4rem;
+    }
+
+    .benefit-item {
+      display: grid;
+      grid-template-columns: 2.25rem 1fr;
+      gap: 0.75rem;
+      align-items: baseline;
+    }
+
+    .benefit-num {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--coral);
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+      padding-top: 0.1rem;
+    }
+
+    .benefit-text {
+      font-size: 1rem;
+      line-height: 1.55;
+      color: var(--espresso);
+      max-width: none;
+    }
+
+    /* ============================================================
+       TWELVE SECTIONS GRID
+    ============================================================ */
+    .sections-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--stone);
+      border: 1px solid var(--stone);
+    }
+
+    .section-card {
+      position: relative;
+      padding: 2rem 1.75rem 2.25rem;
+      background: var(--paper);
+      transition: transform 220ms ease, background 220ms ease;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .section-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--coral);
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .section-card::after {
+      content: '\2192';
+      position: absolute;
+      bottom: 1.25rem;
+      right: 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      color: var(--coral);
+      opacity: 0;
+      transform: translateX(-4px);
+      transition: opacity 220ms ease, transform 220ms ease;
+    }
+
+    .section-card:hover {
+      transform: translateY(-3px);
+      background: var(--cream);
+    }
+
+    .section-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .section-card:hover::after {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .card-num {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: var(--coral);
+      display: block;
+      margin-bottom: 1.125rem;
+    }
+
+    .card-title {
+      font-family: var(--font-display);
+      font-size: 1.1875rem;
+      font-weight: 700;
+      line-height: 1.22;
+      letter-spacing: -0.012em;
+      color: var(--espresso);
+      margin-bottom: 0.75rem;
+    }
+
+    .card-summary {
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      color: var(--muted);
+      max-width: none;
+    }
+
+    /* ============================================================
+       AUDIENCE FILTER
+    ============================================================ */
+    .audience-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.125rem;
+      max-width: 600px;
+    }
+
+    .audience-list li {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      font-size: 1.0625rem;
+      line-height: 1.55;
+      color: var(--espresso);
+    }
+
+    .audience-list li::before {
+      content: '';
+      flex-shrink: 0;
+      width: 18px;
+      height: 2px;
+      background: var(--coral);
+      display: inline-block;
+      position: relative;
+      top: -4px;
+    }
+
+    /* ============================================================
+       WHY NIC
+    ============================================================ */
+    .why-nic-body {
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      max-width: 58ch;
+    }
+
+    /* ============================================================
+       SIGNUP
+    ============================================================ */
+    .signup-wrap {
+      max-width: 560px;
+    }
+
+    .signup-heading {
+      font-family: var(--font-display);
+      font-size: clamp(1.375rem, 2.5vw + 0.5rem, 1.875rem);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.015em;
+      margin-bottom: 0.625rem;
+      color: var(--espresso);
+    }
+
+    .signup-sub {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      max-width: 50ch;
+    }
+
+    .signup-footnote {
+      margin-top: 0.875rem;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+    }
+
+    /* ============================================================
+       FAQ
+    ============================================================ */
+    .faq-list {
+      max-width: 700px;
+    }
+
+    details {
+      border-bottom: 1px solid var(--stone);
+    }
+
+    details:first-child {
+      border-top: 1px solid var(--stone);
+    }
+
+    details summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-block: 1.25rem;
+      cursor: pointer;
+      font-size: 1.0625rem;
+      font-weight: 500;
+      color: var(--espresso);
+      list-style: none;
+      user-select: none;
+      gap: 1rem;
+    }
+
+    details summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details summary::after {
+      content: '+';
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--coral);
+      flex-shrink: 0;
+      transition: transform 200ms ease;
+    }
+
+    details[open] summary::after {
+      content: '-';
+    }
+
+    .faq-answer {
+      padding-bottom: 1.25rem;
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--muted);
+      max-width: 60ch;
+    }
+
+    /* ============================================================
+       CLOSING CTA
+    ============================================================ */
+    .closing-cta-inner {
+      text-align: center;
+      padding-block: var(--section-pad);
+    }
+
+    .closing-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(245,241,238,0.5);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .closing-h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3vw + 0.5rem, 2.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--paper);
+      max-width: 18ch;
+      margin-inline: auto;
+      margin-bottom: 2rem;
+      text-wrap: balance;
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    .site-footer {
+      background: var(--espresso);
+      color: var(--cream);
+      padding-block: 2.5rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+    }
+
+    .footer-copy {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+      color: rgba(245,241,238,0.55);
+      max-width: none;
+    }
+
+    .footer-reassurance {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      color: rgba(245,241,238,0.38);
+      margin-top: 0.375rem;
+      max-width: none;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .footer-links a {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+      color: rgba(245,241,238,0.65);
+      text-decoration: none;
+      transition: color 200ms ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--coral);
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 767px) {
+      :root {
+        --section-pad: 4rem;
+        --h-pad:       1.25rem;
+      }
+
+      .header-lockup {
+        display: none;
+      }
+
+      .hero {
+        padding-block: 3.5rem 3rem;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .hero-image-wrap {
+        order: -1;
+      }
+
+      /* Proof strip: 2x2 on mobile */
+      .proof-strip-inner {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .proof-item {
+        border-right: none;
+        border-bottom: 1px solid var(--stone);
+        padding-block: 1.125rem;
+      }
+
+      .proof-item:nth-child(odd) {
+        border-right: 1px solid var(--stone);
+      }
+
+      .proof-item:nth-last-child(-n+2) {
+        border-bottom: none;
+      }
+
+      .benefits-grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+
+      /* Sections grid: 1-col on mobile */
+      .sections-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-card {
+        border-right: none;
+      }
+
+      .section-card:nth-child(3n) {
+        border-right: none;
+      }
+
+      /* reset last-row special rule for mobile */
+      .section-card:nth-last-child(-n+3):nth-child(3n+1),
+      .section-card:nth-last-child(-n+3):nth-child(3n+2),
+      .section-card:nth-last-child(-n+3):nth-child(3n) {
+        border-bottom: 1px solid var(--stone);
+      }
+
+      .section-card:last-child {
+        border-bottom: none;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+      }
+
+      .footer-links {
+        flex-wrap: wrap;
+        gap: 1.25rem;
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+      /* Sections grid: 2-col on tablet */
+      .sections-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      /* reset 3n border for tablet 2-col */
+      .section-card:nth-child(3n) {
+        border-right: 1px solid var(--stone);
+      }
+
+      .section-card:nth-child(2n) {
+        border-right: none;
+      }
+
+      /* last row border-bottom: for 2-col, last 2 items */
+      .section-card:nth-last-child(-n+3):nth-child(3n+1),
+      .section-card:nth-last-child(-n+3):nth-child(3n+2),
+      .section-card:nth-last-child(-n+3):nth-child(3n) {
+        border-bottom: 1px solid var(--stone);
+      }
+
+      .section-card:nth-last-child(-n+2) {
+        border-bottom: none;
+      }
+
+      .section-card:last-child {
+        border-bottom: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       HEADER
+  ============================================================ -->
+  <header class="site-header" id="site-header" role="banner">
+    <div class="container">
+      <div class="header-inner">
+        <a href="#" class="wordmark" aria-label="Silver AI Consulting home">Silver AI</a>
+        <div class="header-lockup" aria-label="Built for Claude and Codex">
+          <span class="built-for">Built for</span>
+          <img src="/assets/logos/claude.svg" alt="">
+          <span class="logo-label">Claude</span>
+          <span class="sep" aria-hidden="true">+</span>
+          <img src="/assets/logos/codex.svg" alt="">
+          <span class="logo-label">Codex</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ============================================================
+         HERO
+    ============================================================ -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <div class="container">
+        <div class="hero-grid">
+
+          <!-- Left column: text -->
+          <div class="hero-text reveal">
+            <span class="eyebrow eyebrow--coral">FREE COURSE</span>
+
+            <h1 id="hero-heading">
+              Build the AI-Native Business OS Nic Silver runs every day.
+            </h1>
+
+            <!-- Hand-drawn squiggle under headline -->
+            <svg aria-hidden="true" focusable="false" width="240" height="10" viewBox="0 0 240 10" fill="none" style="margin-top:-0.75rem; display:block;">
+              <path d="M2 6 Q13 2,24 6 Q35 10,46 6 Q57 2,68 6 Q79 10,90 6 Q101 2,112 6 Q123 10,134 6 Q145 2,156 6 Q167 10,178 6 Q189 2,200 6 Q211 10,222 6 Q231 2,238 5"
+                    stroke="#F24B2E" stroke-width="2" stroke-linecap="round" fill="none"/>
+            </svg>
+
+            <p class="hero-sub">
+              Twelve paste-the-prompt steps that run under Claude Code or Codex, backed by public GitHub repos for every section.
+            </p>
+
+            <a href="#signup" class="btn-primary">Get the course</a>
+          </div>
+
+          <!-- Right column: image -->
+          <div class="hero-image-wrap reveal" style="transition-delay:100ms;">
+            <div class="hero-image-frame">
+              <img
+                src="/assets/index-hero.webp"
+                alt="Surrealist editorial collage of Claude and Codex logos as torn paper cutouts on a workspace desk"
+                loading="eager"
+                width="600"
+                height="750"
+              >
+            </div>
+            <span class="hero-image-caption">Built for Claude Code · Codex CLI · Cowork</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         NUMERIC PROOF STRIP
+    ============================================================ -->
+    <div class="proof-strip" role="region" aria-label="Course facts">
+      <div class="container">
+        <div class="proof-strip-inner">
+          <div class="proof-item reveal">
+            <span class="proof-num">12</span>
+            <span class="proof-label">Prompts</span>
+          </div>
+          <div class="proof-item reveal" style="transition-delay:60ms;">
+            <span class="proof-num">12</span>
+            <span class="proof-label">Public Repos</span>
+          </div>
+          <div class="proof-item reveal" style="transition-delay:120ms;">
+            <span class="proof-num">5</span>
+            <span class="proof-label">Cowork Zips</span>
+          </div>
+          <div class="proof-item reveal" style="transition-delay:180ms;">
+            <span class="proof-num">1</span>
+            <span class="proof-label">Free Course</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         BENEFITS
+    ============================================================ -->
+    <section class="section section--cream" aria-labelledby="benefits-heading">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">WHAT YOU GET</span>
+          <h2 id="benefits-heading">A workspace that already knows your business.</h2>
+        </div>
+
+        <!-- Arrow doodle -->
+        <svg aria-hidden="true" focusable="false" width="44" height="34" viewBox="0 0 44 34" fill="none" style="margin-bottom:2rem; display:block;">
+          <path d="M3 5 C9 3,18 2,26 9 C32 14,34 23,38 27"
+                stroke="#F24B2E" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <path d="M32 29 L38 27 L36 21"
+                stroke="#F24B2E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+
+        <div class="benefits-grid">
+          <div class="benefit-item reveal">
+            <span class="benefit-num" aria-hidden="true">01</span>
+            <p class="benefit-text">A workspace where Claude already knows your brand voice.</p>
+          </div>
+          <div class="benefit-item reveal" style="transition-delay:50ms;">
+            <span class="benefit-num" aria-hidden="true">02</span>
+            <p class="benefit-text">Search that pulls from the live web, not training data.</p>
+          </div>
+          <div class="benefit-item reveal" style="transition-delay:80ms;">
+            <span class="benefit-num" aria-hidden="true">03</span>
+            <p class="benefit-text">A second brain that grows automatically as you work.</p>
+          </div>
+          <div class="benefit-item reveal" style="transition-delay:110ms;">
+            <span class="benefit-num" aria-hidden="true">04</span>
+            <p class="benefit-text">Inbox, calendar, Drive, and YouTube uploads all running through one OAuth.</p>
+          </div>
+          <div class="benefit-item reveal" style="transition-delay:140ms;">
+            <span class="benefit-num" aria-hidden="true">05</span>
+            <p class="benefit-text">Plans, audits, and reports rendered as real HTML pages, not chat scrollback.</p>
+          </div>
+          <div class="benefit-item reveal" style="transition-delay:170ms;">
+            <span class="benefit-num" aria-hidden="true">06</span>
+            <p class="benefit-text">Skills that stay under your token budget even when they run heavy.</p>
+          </div>
+          <div class="benefit-item reveal" style="transition-delay:200ms;">
+            <span class="benefit-num" aria-hidden="true">07</span>
+            <p class="benefit-text">Hard guardrails on dangerous commands and secrets, automatic.</p>
+          </div>
+          <div class="benefit-item reveal" style="transition-delay:230ms;">
+            <span class="benefit-num" aria-hidden="true">08</span>
+            <p class="benefit-text">Every skill works under both Claude Code and Codex CLI.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         TWELVE SECTIONS PREVIEW
+    ============================================================ -->
+    <section class="section section--paper" aria-labelledby="inside-heading">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">TWELVE SECTIONS</span>
+          <h2 id="inside-heading">Twelve copy-pastes. One Business OS.</h2>
+          <p style="margin-top:0.75rem; font-size:1rem; color:var(--muted); max-width:48ch;">Each section is one prompt. The setup builds itself.</p>
+        </div>
+
+        <div class="sections-grid">
+
+          <article class="section-card reveal">
+            <span class="card-num">§01</span>
+            <h3 class="card-title">Set Up Your Business OS the Right Way</h3>
+            <p class="card-summary">Lay down the workspace your AI will live in. Get this right once and every skill slots in.</p>
+          </article>
+
+          <article class="section-card reveal" style="transition-delay:40ms;">
+            <span class="card-num">§02</span>
+            <h3 class="card-title">Make Claude Code and Codex Cross-Compatible</h3>
+            <p class="card-summary">Never lose a day because one runtime is down. Same workspace, both runtimes.</p>
+          </article>
+
+          <article class="section-card reveal" style="transition-delay:80ms;">
+            <span class="card-num">§03</span>
+            <h3 class="card-title">Add a Search Stack That Actually Works</h3>
+            <p class="card-summary">Stop your AI from making things up. Three tools turn it into a real researcher.</p>
+          </article>
+
+          <article class="section-card reveal" style="transition-delay:40ms;">
+            <span class="card-num">§04</span>
+            <h3 class="card-title">Build a Second Brain with the Wiki</h3>
+            <p class="card-summary">Give your AI a memory that grows with your business. Stop re-explaining things.</p>
+          </article>
+
+          <article class="section-card reveal" style="transition-delay:80ms;">
+            <span class="card-num">§05</span>
+            <h3 class="card-title">Connect Google Workspace</h3>
+            <p class="card-summary">Gmail, Calendar, Drive, YouTube. Once your AI sees them, it starts running your week.</p>
+          </article>
+
+          <article class="section-card reveal" style="transition-delay:120ms;">
+            <span class="card-num">§06</span>
+            <h3 class="card-title">Train Claude on Your Voice</h3>
+            <p class="card-summary">Every draft sounds like you wrote it. First drafts at 80%, not 20%.</p>
+          </article>
+
+          <article class="section-card reveal">
+            <span class="card-num">§07</span>
+            <h3 class="card-title">Lock Your Visual Brand</h3>
+            <p class="card-summary">Every image, site, header looks like the same brand. Consistency builds trust.</p>
+          </article>
+
+          <article class="section-card reveal" style="transition-delay:40ms;">
+            <span class="card-num">§08</span>
+            <h3 class="card-title">Build Websites That Don't Look AI-Generated</h3>
+            <p class="card-summary">Ship real-looking sites without hiring a designer. Principles plus a vision-model QA pass.</p>
+          </article>
+
+          <article class="section-card reveal" style="transition-delay:80ms;">
+            <span class="card-num">§09</span>
+            <h3 class="card-title">Make Your Workspace Token-Efficient</h3>
+            <p class="card-summary">Cut your AI bill by 85% on the workflows you run most. Three small patterns, big savings.</p>
+          </article>
+
+          <article class="section-card reveal" style="transition-delay:40ms;">
+            <span class="card-num">§10</span>
+            <h3 class="card-title">Generate HTML Reports Instead of Walls of Text</h3>
+            <p class="card-summary">Anything you'll read twice deserves a real document. One command makes it automatic.</p>
+          </article>
+
+          <article class="section-card reveal" style="transition-delay:80ms;">
+            <span class="card-num">§11</span>
+            <h3 class="card-title">Compress Agent-to-Agent Handoffs</h3>
+            <p class="card-summary">Squeeze more cost out when agents talk to each other behind the scenes. Quiet utility, real savings.</p>
+          </article>
+
+          <article class="section-card reveal" style="transition-delay:120ms;">
+            <span class="card-num">§12</span>
+            <h3 class="card-title">Lock It Down and Let It Improve Itself</h3>
+            <p class="card-summary">Safe by default, smarter every week. Install once, it keeps working.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         AUDIENCE FILTER
+    ============================================================ -->
+    <section class="section section--cream" id="who-this-is-for" aria-labelledby="audience-heading">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">WHO THIS IS FOR</span>
+          <h2 id="audience-heading">Built for operators, not engineers.</h2>
+        </div>
+        <ul class="audience-list reveal" style="transition-delay:80ms;">
+          <li>Solo founders running their own business.</li>
+          <li>Operators who want AI working inside the company, not theoretical.</li>
+          <li>People comfortable pasting a prompt into a terminal once or twice.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         WHY NIC SILVER
+    ============================================================ -->
+    <section class="section section--paper" aria-labelledby="why-nic-heading">
+      <div class="container">
+        <div class="reveal">
+          <span class="eyebrow">WHY NIC SILVER</span>
+          <h2 id="why-nic-heading" style="margin-bottom:1.25rem;">
+            The same workspace I run my own consultancy from.
+          </h2>
+
+          <!-- Loose circle doodle -->
+          <svg aria-hidden="true" focusable="false" width="42" height="42" viewBox="0 0 42 42" fill="none" style="margin-bottom:1.25rem; display:block;">
+            <ellipse cx="21" cy="21" rx="17" ry="16" stroke="#F24B2E" stroke-width="2"
+                     stroke-dasharray="6 3" transform="rotate(-8 21 21)" fill="none"/>
+          </svg>
+
+          <p class="why-nic-body">
+            Silver AI Consulting builds AI systems for marketing agencies and small businesses. This is the workspace I ship that work from. I packaged the foundation up because every client kept asking how to get started. You're welcome to copy it.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         SIGNUP
+    ============================================================ -->
+    <section class="section section--cream" id="signup" aria-labelledby="signup-heading">
+      <div class="container">
+        <div class="signup-wrap reveal">
+          <span class="eyebrow eyebrow--coral">GET THE COURSE</span>
+          <h2 id="signup-heading" class="signup-heading">
+            Free. No credit card. The course link arrives in your inbox in under a minute.
+          </h2>
+          <p class="signup-sub">
+            Drop your email below. You'll get a short welcome and a direct link to all twelve sections.
+          </p>
+
+          <div class="flodesk-embed-placeholder" style="border:1px dashed #A58372; padding:2rem; background:#FEFFFF; text-align:center; color:#A58372; font-family:'JetBrains Mono', monospace; font-size:0.85rem;">
+            <!-- FLODESK FORM EMBED -->
+            <!-- Replace this block with the Flodesk inline form embed for the "Build Your Business OS" signup form. -->
+            FLODESK FORM EMBED PLACEHOLDER
+          </div>
+
+          <p class="signup-footnote">No card. Email only.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         FAQ
+    ============================================================ -->
+    <section class="section section--paper" aria-labelledby="faq-heading">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">FAQ</span>
+          <h2 id="faq-heading">Common questions.</h2>
+        </div>
+
+        <div class="faq-list reveal" style="transition-delay:60ms;">
+
+          <details>
+            <summary>What is this?</summary>
+            <p class="faq-answer">Twelve paste-the-prompt steps that set up an AI-native workspace. Each step has a public GitHub repo behind it, so you can read the source before running it.</p>
+          </details>
+
+          <details>
+            <summary>Do I need to code?</summary>
+            <p class="faq-answer">No. Each section is a single prompt you paste into Claude Code or Codex. The runtime does the work.</p>
+          </details>
+
+          <details>
+            <summary>What does it cost?</summary>
+            <p class="faq-answer">Free. The course is the foundation. The polished Skills Library at <a href="https://skills.nicsilver.com" target="_blank" rel="noopener noreferrer">skills.nicsilver.com</a> is the paid layer on top.</p>
+          </details>
+
+          <details>
+            <summary>Claude Code vs Codex?</summary>
+            <p class="faq-answer">Both work. Five of the twelve sections also ship a Cowork-compatible zip if you're on Claude Cowork.</p>
+          </details>
+
+          <details>
+            <summary>What if I get stuck?</summary>
+            <p class="faq-answer">Reply to the welcome email or book a call. The course is free; a quick reply costs nothing.</p>
+          </details>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         CLOSING CTA
+    ============================================================ -->
+    <section class="section--dark" aria-labelledby="closing-heading">
+      <div class="container">
+        <div class="closing-cta-inner reveal">
+          <span class="closing-eyebrow">GET STARTED</span>
+          <h2 id="closing-heading" class="closing-h2">
+            Twelve prompts away from an AI-native business.
+          </h2>
+          <a href="#signup" class="btn-outline">Send me the course</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <p class="footer-copy">© 2026 Nic Silver · Silver AI Consulting</p>
+          <p class="footer-reassurance">Free course. No credit card. Email only.</p>
+        </div>
+        <nav aria-label="Footer links">
+          <ul class="footer-links">
+            <li><a href="https://nicsilver.com" target="_blank" rel="noopener noreferrer">nicsilver.com</a></li>
+            <li><a href="https://skills.nicsilver.com" target="_blank" rel="noopener noreferrer">Skills Library</a></li>
+          <li><a href="mailto:hi@nicsilver.com">hi@nicsilver.com</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       MINIMAL VANILLA JS
+       - Sticky header border on scroll
+       - IntersectionObserver fade-up for .reveal elements
+  ============================================================ -->
+  <script>
+    (function () {
+      'use strict';
+
+      // Sticky header shadow
+      var header = document.getElementById('site-header');
+      if (header) {
+        window.addEventListener('scroll', function () {
+          header.classList.toggle('is-scrolled', window.scrollY > 8);
+        }, { passive: true });
+      }
+
+      // Scroll-triggered fade-up reveal
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(function (el) {
+          observer.observe(el);
+        });
+      } else {
+        // Fallback for old browsers: show everything immediately
+        document.querySelectorAll('.reveal').forEach(function (el) {
+          el.classList.add('is-visible');
+        });
+      }
+    })();
+  </script>
+
+</body>
+</html>
