@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daily AI Tips Library | Silver AI Consulting</title>
+  <meta name="description" content="One AI tip every weekday. Real prompts, real workflows, real tools I use myself. Free for as long as you want.">
+  <meta property="og:title" content="Daily AI Tips Library">
+  <meta property="og:description" content="One AI tip every weekday. Real prompts and workflows you can use today.">
+  <meta property="og:type" content="website">
+  <meta name="robots" content="index, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #F5F1EE;
+      --paper: #FEFFFF;
+      --stone: #E8E2DE;
+      --espresso: #493B35;
+      --coral: #F24B2E;
+      --coral-tint: rgba(242,75,46,0.08);
+      --muted: #A58372;
+      --gold: #C17817;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+      --container: 720px;
+    }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      background: var(--paper);
+      color: var(--espresso);
+      font-family: var(--font-body);
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container { max-width: var(--container); margin-inline: auto; padding-inline: 1.5rem; }
+
+    .site-header {
+      background: var(--paper);
+      border-bottom: 1px solid var(--stone);
+    }
+    .site-header .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-block: 1rem;
+    }
+    .wordmark {
+      font-family: var(--font-display);
+      font-size: 1.0625rem;
+      font-weight: 700;
+      color: var(--espresso);
+      text-decoration: none;
+    }
+    .tag {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .hero {
+      padding-block: 4rem 2rem;
+    }
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--coral);
+      display: inline-block;
+      background: var(--coral-tint);
+      padding: 0.3rem 0.7rem;
+      border-radius: 2px;
+      margin-bottom: 1.25rem;
+    }
+    h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.1rem, 4.5vw + 0.5rem, 3.15rem);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.022em;
+      color: var(--espresso);
+      text-wrap: balance;
+      margin-bottom: 1.1rem;
+    }
+    h1 em { color: var(--coral); font-style: italic; }
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--espresso);
+      line-height: 1.6;
+      max-width: 54ch;
+    }
+
+    .form-card {
+      background: var(--cream);
+      border: 1px solid var(--stone);
+      border-radius: 6px;
+      padding: 2rem 1.75rem;
+      margin-top: 2.5rem;
+      border-top: 4px solid var(--coral);
+    }
+    .form-card-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--coral);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .form-card-headline {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--espresso);
+      margin-bottom: 0.5rem;
+    }
+    .form-card-sub {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+    .flodesk-embed-placeholder {
+      border: 1px dashed var(--muted);
+      padding: 2rem;
+      background: var(--paper);
+      text-align: center;
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      border-radius: 4px;
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: 1.65rem;
+      font-weight: 700;
+      color: var(--espresso);
+      margin-top: 3rem;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.015em;
+    }
+
+    .whats-inside {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .whats-inside li {
+      padding: 1rem 0 1rem 1.75rem;
+      position: relative;
+      border-bottom: 1px solid var(--stone);
+      font-size: 1rem;
+    }
+    .whats-inside li::before {
+      content: "▸";
+      color: var(--coral);
+      position: absolute;
+      left: 0;
+      top: 1rem;
+      font-weight: 700;
+    }
+    .whats-inside li:last-child { border-bottom: none; }
+    .whats-inside strong { color: var(--espresso); font-weight: 600; }
+
+    .who {
+      background: var(--cream);
+      border-radius: 6px;
+      padding: 1.85rem 1.75rem;
+      margin-top: 2.5rem;
+    }
+    .who p + p { margin-top: 0.75rem; }
+
+    .about {
+      padding-block: 2.5rem 1.5rem;
+      border-top: 1px solid var(--stone);
+      margin-top: 3rem;
+    }
+    .about p {
+      font-size: 0.98rem;
+      color: var(--espresso);
+      max-width: 60ch;
+    }
+    .about p + p { margin-top: 0.75rem; }
+    .about a { color: var(--coral); text-decoration: none; font-weight: 500; }
+    .about a:hover { text-decoration: underline; }
+
+    .footer {
+      padding-block: 1.5rem 3rem;
+      border-top: 1px solid var(--stone);
+      margin-top: 2rem;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .footer a { color: var(--coral); text-decoration: none; }
+    .footer .brand { color: var(--coral); font-weight: 500; }
+
+    @media (max-width: 600px) {
+      .hero { padding-block: 2.5rem 1.5rem; }
+      h1 { font-size: 1.95rem; }
+      .form-card { padding: 1.5rem 1.25rem; }
+      .who { padding: 1.5rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container row">
+      <a href="https://getaios.xyz" class="wordmark">Silver AI</a>
+      <span class="tag">Daily AI Tips</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <span class="eyebrow">FREE · ONE EMAIL · NO SPAM</span>
+        <h1>One AI tip every weekday. <em>The same library I run myself.</em></h1>
+        <p class="hero-sub">Every weekday I post a short video showing one AI tool, prompt, or workflow I actually use. The full library lives in one Google Drive folder. Sign up once and you get every new tip forever.</p>
+
+        <div class="form-card">
+          <span class="form-card-eyebrow">Get the library</span>
+          <div class="form-card-headline">Drop your email. Get the link.</div>
+          <div class="form-card-sub">One welcome email with the Drive folder link. Every new tip lands inside that same folder. Unsubscribe anytime.</div>
+          <div class="flodesk-embed-placeholder">
+            <!-- FLODESK FORM EMBED -->
+            <!-- Replace this block with the Flodesk inline form embed for the "Daily AI Tips Library" signup form. -->
+            FLODESK FORM EMBED PLACEHOLDER
+          </div>
+        </div>
+
+        <h2>What's inside the library</h2>
+        <ul class="whats-inside">
+          <li><strong>The exact prompts.</strong> Copy-paste ready. The same ones I use in client work and my own workflows.</li>
+          <li><strong>The tool walkthroughs.</strong> How to install the MCP, where the gotchas are, what NOT to do.</li>
+          <li><strong>Before-and-after examples.</strong> So you can see whether a tool is worth your time before installing it.</li>
+          <li><strong>One short doc per tip.</strong> Skimmable in 60 seconds. Saved forever in your own Drive.</li>
+          <li><strong>Growing every weekday.</strong> No catch-up pressure. Read the ones that match what you're building.</li>
+        </ul>
+
+        <div class="who">
+          <p><strong>This is for you if</strong> you run a business, want to use more AI day-to-day, and don't want to wade through Twitter to find what's actually useful.</p>
+          <p><strong>This is not for you if</strong> you want hype, courses, or an "AI agent will replace your job" newsletter. I'm not selling fear.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="about">
+      <div class="container">
+        <p>I'm Nic. I run Silver AI Consulting and I've spent the last year building AI systems for small and mid-sized businesses. The tips in the library are the ones I keep reaching for, week after week.</p>
+        <p>If you want the productized version of my whole stack (10 skills I run daily), it's at <a href="https://skills.nicsilver.com">skills.nicsilver.com</a> for $99 once. Optional. The daily library is free either way.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container row" style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;width:100%;max-width:720px;margin-inline:auto;">
+      <span>Silver AI Consulting</span>
+      <span class="brand">getaios.xyz/tips</span>
+    </div>
+  </footer>
+</body>
+</html>
