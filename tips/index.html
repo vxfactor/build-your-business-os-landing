@@ -30,7 +30,7 @@
     }
     html { font-size: 16px; scroll-behavior: smooth; }
     body {
-      background: var(--paper);
+      background: var(--cream);
       color: var(--espresso);
       font-family: var(--font-body);
       font-size: 1.0625rem;
@@ -40,8 +40,24 @@
     .container { max-width: var(--container); margin-inline: auto; padding-inline: 1.5rem; }
 
     .site-header {
-      background: var(--paper);
+      background: var(--cream);
       border-bottom: 1px solid var(--stone);
+    }
+
+    .hero-image {
+      margin-top: 2.25rem;
+      border-radius: 6px;
+      overflow: hidden;
+      border: 1px solid var(--stone);
+      box-shadow: 0 4px 24px rgba(73, 59, 53, 0.08);
+      aspect-ratio: 3 / 2;
+      background: var(--paper);
+    }
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
     .site-header .row {
       display: flex;
@@ -99,12 +115,13 @@
     }
 
     .form-card {
-      background: var(--cream);
+      background: var(--paper);
       border: 1px solid var(--stone);
       border-radius: 6px;
       padding: 2rem 1.75rem;
       margin-top: 2.5rem;
       border-top: 4px solid var(--coral);
+      box-shadow: 0 2px 18px rgba(73, 59, 53, 0.05);
     }
     .form-card-eyebrow {
       font-family: var(--font-mono);
@@ -171,7 +188,8 @@
     .whats-inside strong { color: var(--espresso); font-weight: 600; }
 
     .who {
-      background: var(--cream);
+      background: var(--paper);
+      border: 1px solid var(--stone);
       border-radius: 6px;
       padding: 1.85rem 1.75rem;
       margin-top: 2.5rem;
@@ -230,6 +248,10 @@
         <span class="eyebrow">FREE · ONE EMAIL · NO SPAM</span>
         <h1>One AI tip every weekday. <em>The same library I run myself.</em></h1>
         <p class="hero-sub">Every weekday I post a short video showing one AI tool, prompt, or workflow I actually use. The full library lives in one Google Drive folder. Sign up once and you get every new tip forever.</p>
+
+        <figure class="hero-image">
+          <img src="assets/hero-card-catalog.png" alt="A vintage library card catalog drawer slightly open, with floating index cards" loading="eager">
+        </figure>
 
         <div class="form-card">
           <!-- Flodesk inline form: Daily AI Tips Library Signup (form id 6a0f3e392e5afde32a2e4120) -->
